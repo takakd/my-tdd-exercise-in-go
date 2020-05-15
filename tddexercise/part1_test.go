@@ -2,12 +2,12 @@ package tddexercise
 
 import "testing"
 
-func testMultiplication(t testing.T) {
+func Test_Multiplication(t *testing.T) {
 	five := NewDollar(5)
 	five.times(2)
 
 	if 10 != five.amount {
-		t.Errorf(`expected=%s, actual=%s`, five.amount, 10)
+		t.Errorf("expected=%d, actual=%d", five.amount, 10)
 	}
 }
 

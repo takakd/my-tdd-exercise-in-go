@@ -5,6 +5,7 @@ type Dollar struct {
 }
 
 func NewDollar(amount int) *Dollar {
+	return &Dollar{}
 }
 
 func (d *Dollar)times(multiplier int) {
