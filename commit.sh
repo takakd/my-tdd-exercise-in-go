@@ -17,6 +17,6 @@ if [[ "$1" = "red" ]] || [[ "$1" = "green" ]]; then
     if [[ "$2" = "" ]]; then
         git commit -m "${1}"
     else
-        git commit -m "${1} ${2}"
+        git commit -m "${1} note:${2}"
     fi
 fi
