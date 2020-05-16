@@ -38,14 +38,18 @@ type Expression interface {
 
 // Bank
 type Bank struct {
-	rates map[struct{
+	rates map[struct {
 		from string
-		to string
-	}] int
+		to   string
+	}]int
 }
 
 func NewBank() *Bank {
-	return &Bank{}
+	return &Bank{
+		rates: map[struct {
+			from string
+			to   string
+		}]int{}}
 }
 
 func (b *Bank) reduce(source Expression, to string) Money {
@@ -72,17 +76,21 @@ func (b *Bank) reduce(source Expression, to string) Money {
 }
 
 func (b *Bank) addRate(from string, to string, rate int) {
-	b.rates[struct{
+	b.rates[struct {
 		from string
-		to string
+		to   string
 	}{from, to}] = rate
 }
 
 func (b *Bank) rate(from string, to string) int {
-	rate, ok := b.rates[struct{
+	if from == to {
+		return 1
+	}
+
+	rate, ok := b.rates[struct {
 		from string
-		to string
-	}{from ,to}]
+		to   string
+	}{from, to}]
 	if ! ok {
 		panic("unknown key")
 	}
