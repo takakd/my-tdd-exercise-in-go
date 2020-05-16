@@ -1,33 +1,31 @@
 package tddexercise
 
 // Money
-type Money struct {
-	amount int
-}
-
-func (m Money)times(multipiler int) Money {
-	return Money{}
-}
-
-func (m Money)currency() string {
-	return ""
+type Money interface {
+	amount() int
+	times(multipiler int) Money
+	currency() string
 }
 
 func MakeDollar(amount int) Money {
-	return Dollar{Money{amount: amount}}.Money
+	return Dollar{amountValue: amount}
 }
 
 func MakeFranc(amount int) Money {
-	return Franc{Money{amount: amount}}.Money
+	return Franc{amountValue: amount}
 }
 
 // Dollar
 type Dollar struct {
-	Money
+	amountValue int
+}
+
+func (d Dollar) amount() int {
+	return d.amountValue
 }
 
 func (d Dollar) times(multiplier int) Money {
-	return MakeDollar(d.amount * multiplier)
+	return MakeDollar(d.amountValue * multiplier)
 }
 
 func (d Dollar) currency() string {
@@ -36,11 +34,15 @@ func (d Dollar) currency() string {
 
 // Franc
 type Franc struct {
-	Money
+	amountValue int
+}
+
+func (f Franc) amount() int {
+	return f.amountValue
 }
 
 func (f Franc) times(multiplier int) Money {
-	return MakeFranc(f.amount * multiplier)
+	return MakeFranc(f.amountValue * multiplier)
 }
 
 func (f Franc) currency() string {
