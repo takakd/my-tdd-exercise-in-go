@@ -133,6 +133,7 @@ func Test_SumPlusMoney(t *testing.T) {
 	tenFrancs := MakeFranc(10)
 	bank := NewBank()
 	bank.addRate("CHF", "USD", 2)
+	// this test for "Sum", so we can not write "fiveBucks.plus(tenFrancs)"
 	sum := NewSum(fiveBucks, tenFrancs).plus(fiveBucks)
 	result := bank.reduce(sum, "USD")
 	if MakeDollar(15) != result {
