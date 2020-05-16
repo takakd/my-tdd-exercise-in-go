@@ -26,7 +26,7 @@ func (m Money) plus(added Money) Expression {
 	return NewSum(m, added)
 }
 
-func (m Money) reduce(to string) Money{
+func (m Money) reduce(to string) Money {
 	return m
 }
 
@@ -64,6 +64,10 @@ func (b *Bank) reduce(source Expression, to string) Money {
 	//panic("unknown type")
 
 	return source.reduce(to)
+}
+
+func (b *Bank) addRate(from string, to string, rate int) {
+
 }
 
 // Sum
