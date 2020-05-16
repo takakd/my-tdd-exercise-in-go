@@ -87,3 +87,8 @@ func Test_ReduceMoneyDifferentCurrency(t *testing.T) {
 	}
 }
 
+func Test_ArrayEquals(t *testing.T) {
+	if [...]string{"abc"} != [...]string{"abc"} {
+		t.Error("not equal array")
+	}
+}
