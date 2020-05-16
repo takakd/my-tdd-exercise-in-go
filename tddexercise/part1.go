@@ -116,3 +116,7 @@ func (s *Sum) reduce(bank *Bank, to string) Money {
 func (s *Sum) plus(added Expression) Expression {
 	return NewSum(s, added)
 }
+
+func (s *Sum) times(multiplier int) Expression {
+	return NewSum(s.augend.times(multiplier), s.addend.times(multiplier))
+}
