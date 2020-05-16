@@ -26,7 +26,7 @@ func (m Money) plus(added Money) Expression {
 	return NewSum(m, added)
 }
 
-func (m Money) reduce(to string) Money {
+func (m Money) reduce(bank *Bank, to string) Money {
 	if m.currency == "CHF" && to == "USD" {
 		return MakeMoney(m.amount / 2, to)
 	}
@@ -35,7 +35,7 @@ func (m Money) reduce(to string) Money {
 
 // Expression
 type Expression interface {
-	reduce(to string) Money
+	reduce(bank *Bank, to string) Money
 }
 
 // Bank
@@ -66,7 +66,7 @@ func (b *Bank) reduce(source Expression, to string) Money {
 	//}
 	//panic("unknown type")
 
-	return source.reduce(to)
+	return source.reduce(b, to)
 }
 
 func (b *Bank) addRate(from string, to string, rate int) {
@@ -83,7 +83,7 @@ func NewSum(augend Money, addend Money) *Sum {
 	return &Sum{augend: augend, addend: addend}
 }
 
-func (s *Sum) reduce(to string) Money {
+func (s *Sum) reduce(bank *Bank, to string) Money {
 	amount := s.augend.amount + s.addend.amount
 	return MakeMoney(amount, to)
 }
