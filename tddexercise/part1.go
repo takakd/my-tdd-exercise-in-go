@@ -35,6 +35,7 @@ func (m Money) reduce(bank *Bank, to string) Money {
 type Expression interface {
 	plus(added Expression) Expression
 	reduce(bank *Bank, to string) Money
+	times(multiplier int) Expression
 }
 
 // Bank
