@@ -7,23 +7,14 @@ type Money struct {
 }
 
 func MakeDollar(amount int) Money {
-	return Dollar{Money{amount: amount, currency: "USD"}}.Money
+	return Money{amount: amount, currency: "USD"}
 }
 
 func MakeFranc(amount int) Money {
-	return Franc{Money{amount: amount, currency: "CHF"}}.Money
+	return Money{amount: amount, currency: "CHF"}
 }
 
 func (m Money) times(multiplier int) Money {
 	return Money{amount: m.amount * multiplier, currency: m.currency}
 }
 
-// Dollar
-type Dollar struct {
-	Money
-}
-
-// Franc
-type Franc struct {
-	Money
-}
