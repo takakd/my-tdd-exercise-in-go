@@ -5,17 +5,21 @@ type Money struct {
 	amount int
 }
 
+func MakeDollar(amount int) Dollar {
+	return Dollar{Money{amount: amount}}
+}
+
+func MakeFranc(amount int) Franc {
+	return Franc{Money{amount: amount}}
+}
+
 // Dollar
 type Dollar struct {
 	Money
 }
 
-func NewDollar(amount int) Dollar {
-	return Dollar{Money{amount: amount}}
-}
-
 func (d Dollar) times(multiplier int) Money {
-	return NewDollar(d.amount * multiplier).Money
+	return MakeDollar(d.amount * multiplier).Money
 }
 
 // Franc
@@ -23,10 +27,6 @@ type Franc struct {
 	Money
 }
 
-func NewFranc(amount int) Franc {
-	return Franc{Money{amount: amount}}
-}
-
 func (f Franc) times(multiplier int) Money {
-	return NewFranc(f.amount * multiplier).Money
+	return MakeFranc(f.amount * multiplier).Money
 }
