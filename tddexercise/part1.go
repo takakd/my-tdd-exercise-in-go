@@ -18,3 +18,6 @@ func (m Money) times(multiplier int) Money {
 	return Money{amount: m.amount * multiplier, currency: m.currency}
 }
 
+func (m Money) plus(added Money) Money {
+	return Money{amount: m.amount + added.amount, currency: m.currency}
+}

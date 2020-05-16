@@ -37,3 +37,11 @@ func Test_Currency(t *testing.T) {
 		t.Errorf("expected=%s, actual=%s", "CHF", MakeFranc(1).currency)
 	}
 }
+
+func Test_SimpleAddition(t *testing.T) {
+	sum := MakeDollar(5).plus(MakeDollar(5))
+	if sum != MakeDollar(10) {
+		t.Errorf("expected=%d, actual=%d", MakeDollar(10).amount, sum.amount)
+	}
+}
+
