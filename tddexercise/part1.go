@@ -14,8 +14,8 @@ func NewDollar(amount int) Dollar {
 	return Dollar{Money{amount: amount}}
 }
 
-func (d Dollar) times(multiplier int) Dollar {
-	return NewDollar(d.amount * multiplier)
+func (d Dollar) times(multiplier int) Money {
+	return NewDollar(d.amount * multiplier).Money
 }
 
 // Franc
@@ -27,6 +27,6 @@ func NewFranc(amount int) Franc {
 	return Franc{Money{amount: amount}}
 }
 
-func (f Franc) times(multiplier int) Franc {
-	return NewFranc(f.amount * multiplier)
+func (f Franc) times(multiplier int) Money {
+	return NewFranc(f.amount * multiplier).Money
 }
