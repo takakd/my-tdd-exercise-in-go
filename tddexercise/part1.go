@@ -1,5 +1,9 @@
 package tddexercise
 
+// Money
+type Money struct {
+}
+
 // Dollar
 type Dollar struct {
 	amount int
