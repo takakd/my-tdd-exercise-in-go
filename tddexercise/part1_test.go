@@ -78,3 +78,12 @@ func Test_ReduceMoney(t *testing.T) {
 	}
 }
 
+func Test_ReduceMoneyDifferentCurrency(t *testing.T) {
+	bank := NewBank()
+	bank.addRate("CHF", "USD", 2)
+	result := bank.reduce(MakeFranc(2), "USD")
+	if MakeDollar(1) != result {
+		t.Errorf("expected=%d, actual=%d", result.amount, MakeDollar(1).amount)
+	}
+}
+
