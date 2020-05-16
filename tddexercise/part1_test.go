@@ -70,3 +70,11 @@ func Test_ReduceSum(t *testing.T) {
 	}
 }
 
+func Test_ReduceMoney(t *testing.T) {
+	bank := NewBank()
+	result := bank.reduce(MakeDollar(1), "USD")
+	if MakeDollar(1) != result {
+		t.Errorf("expected=%d, actual=%d", result.amount, MakeDollar(1).amount)
+	}
+}
+
