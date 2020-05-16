@@ -94,16 +94,23 @@ func Test_ArrayEquals(t *testing.T) {
 }
 
 func Test_MapEqual(t *testing.T) {
-	l := map[struct{
+	l := map[struct {
 		from string
-		to string
+		to   string
 	}]int{{"CHF", "USD"}: 2}
-	r := map[struct{
+	r := map[struct {
 		from string
-		to string
+		to   string
 	}]int{{"CHF", "USD"}: 2}
 
 	if ! reflect.DeepEqual(l, r) {
 		t.Error("not equal array")
+	}
+}
+
+func Test_IdentityRate(t *testing.T) {
+	bank := NewBank()
+	if 1 != bank.rate("USD", "USD") {
+		t.Errorf("expected=%d, actual=%d", 1, bank.rate("USD", "USD"))
 	}
 }
