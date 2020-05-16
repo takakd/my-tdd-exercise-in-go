@@ -127,3 +127,15 @@ func Test_MixedAddition(t *testing.T) {
 		t.Errorf("expected=%d, actual=%d", result.amount, MakeDollar(10).amount)
 	}
 }
+
+func Test_SumPlusMoney(t *testing.T) {
+	fiveBucks := MakeDollar(5)
+	tenFrancs := MakeFranc(10)
+	bank := NewBank()
+	bank.addRate("CHF", "USD", 2)
+	sum := NewSum(fiveBucks, tenFrancs).plus(fiveBucks)
+	result := bank.reduce(sum, "USD")
+	if MakeDollar(15) != result {
+		t.Errorf("expected=%d, actual=%d", MakeDollar(15).amount, result.amount)
+	}
+}
