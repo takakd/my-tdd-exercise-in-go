@@ -3,17 +3,19 @@ package tddexercise
 import (
 	"testing"
 	"reflect"
+	"fmt"
 )
 
 func Test_Multiplication(t *testing.T) {
 	five := MakeDollar(5)
 
 	if MakeDollar(10) != five.times(2) {
-		t.Errorf("expected=%d, actual=%d", five.times(2).amount, 10)
+		t.Errorf("expected=%d, actual=%d", five.times(2), 10)
 	}
 
+	fmt.Printf("%v, %v", MakeDollar(15), five.times(3))
 	if MakeDollar(15) != five.times(3) {
-		t.Errorf("expected=%d, actual=%d", five.times(3).amount, 15)
+		t.Errorf("expected=%d, actual=%d", five.times(3), 15)
 	}
 }
 
@@ -54,10 +56,10 @@ func Test_PlusReturnSum(t *testing.T) {
 	// @note: interface is pointer.
 	sum, _ := result.(*Sum)
 	if five != sum.augend {
-		t.Errorf("expected=%d, actual=%d", five.amount, sum.augend.amount)
+		t.Errorf("expected=%d, actual=%d", five.amount, sum.augend)
 	}
 	if five != sum.addend {
-		t.Errorf("expected=%d, actual=%d", five.amount, sum.addend.amount)
+		t.Errorf("expected=%d, actual=%d", five.amount, sum.addend)
 	}
 }
 
@@ -116,8 +118,8 @@ func Test_IdentityRate(t *testing.T) {
 }
 
 func Test_MixedAddition(t *testing.T) {
-	fiveBucks := MakeDollar(5)
-	tenFrancs := MakeFranc(10)
+	fiveBucks := Expression(MakeDollar(5))
+	tenFrancs := Expression(MakeFranc(10))
 	bank := NewBank()
 	bank.addRate("CHF", "USD", 2)
 	result := bank.reduce(fiveBucks.plus(tenFrancs), "USD")

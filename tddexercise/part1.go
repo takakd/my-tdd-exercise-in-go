@@ -18,11 +18,11 @@ func MakeFranc(amount int) Money {
 	return MakeMoney(amount, "CHF")
 }
 
-func (m Money) times(multiplier int) Money {
+func (m Money) times(multiplier int) Expression {
 	return Money{amount: m.amount * multiplier, currency: m.currency}
 }
 
-func (m Money) plus(added Money) Expression {
+func (m Money) plus(added Expression) Expression {
 	return NewSum(m, added)
 }
 
@@ -33,6 +33,7 @@ func (m Money) reduce(bank *Bank, to string) Money {
 
 // Expression
 type Expression interface {
+	plus(added Expression) Expression
 	reduce(bank *Bank, to string) Money
 }
 
@@ -99,15 +100,19 @@ func (b *Bank) rate(from string, to string) int {
 
 // Sum
 type Sum struct {
-	augend Money
-	addend Money
+	augend Expression
+	addend Expression
 }
 
-func NewSum(augend Money, addend Money) *Sum {
+func NewSum(augend Expression, addend Expression) *Sum {
 	return &Sum{augend: augend, addend: addend}
 }
 
 func (s *Sum) reduce(bank *Bank, to string) Money {
 	amount := s.augend.reduce(bank, to).amount + s.addend.reduce(bank, to).amount
 	return MakeMoney(amount, to)
+}
+
+func (s *Sum) plus(added Expression) Expression {
+	return nil
 }
