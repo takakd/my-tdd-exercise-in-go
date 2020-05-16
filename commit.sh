@@ -5,7 +5,7 @@ if [[ $# -le 0 ]]; then
     exit 0
 fi
 
-if [[ "$1" -eq "red" ]] || [[ "$1" -eq "green" ]]; then
+if [[ "$1" = "red" ]] || [[ "$1" = "green" ]]; then
 #    REV=$(date +%Y%m%d)
 #    echo "* master" | grep "\* master"
 #    if [[ $? -ne 0 ]]; then
@@ -14,10 +14,9 @@ if [[ "$1" -eq "red" ]] || [[ "$1" -eq "green" ]]; then
 
     git add --all
 
-
-    if [[ "$2" -ne "" ]]; then
-        git commit -m "${1} \"${2}\""
-    else
+    if [[ "$2" = "" ]]; then
         git commit -m "${1}"
+    else
+        git commit -m "${1} ${2}"
     fi
 fi
