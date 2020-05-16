@@ -45,3 +45,9 @@ func Test_SimpleAddition(t *testing.T) {
 	}
 }
 
+//
+func Test_SimpleAddition(t *testing.T) {
+	if MakeDollar(10) != reduced {
+		t.Errorf("expected=%d, actual=%d", MakeDollar(10).amount, reduced)
+	}
+}
