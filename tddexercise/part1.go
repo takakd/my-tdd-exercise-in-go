@@ -2,21 +2,21 @@ package tddexercise
 
 // Money
 type Money struct {
+	amount int
 }
 
 // Dollar
 type Dollar struct {
-	amount int
+	Money
 }
 
 func NewDollar(amount int) Dollar {
-	return Dollar{amount: amount}
+	return Dollar{Money{amount: amount}}
 }
 
 func (d Dollar) times(multiplier int) Dollar {
 	return NewDollar(d.amount * multiplier)
 }
-
 
 // Franc
 type Franc struct {
