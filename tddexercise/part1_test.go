@@ -17,10 +17,10 @@ func Test_Multiplication(t *testing.T) {
 }
 
 func Test_Equality(t *testing.T) {
-	if *NewDollar(5) != *NewDollar(5) {
+	if NewDollar(5) != NewDollar(5) {
 		t.Error("not equal.")
 	}
-	if *NewDollar(5) == *NewDollar(6) {
+	if NewDollar(5) == NewDollar(6) {
 		t.Error("not equal.")
 	}
 }

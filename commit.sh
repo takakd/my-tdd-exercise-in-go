@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 if [[ $# -le 0 ]]; then
-    echo "usage: sh commit (green|red)"
+    echo "usage: sh commit (green|red) comment"
     exit 0
 fi
 
@@ -13,5 +13,11 @@ if [[ "$1" -eq "red" ]] || [[ "$1" -eq "green" ]]; then
 #    fi
 
     git add --all
-    git commit -m "${1}"
+
+
+    if [[ "$2" -ne "" ]]; then
+        git commit -m "${1} ${2}"
+    else
+        git commit -m "${1}"
+    fi
 fi
