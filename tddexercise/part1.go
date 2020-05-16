@@ -3,7 +3,7 @@ package tddexercise
 // Money
 type Money interface {
 	amount() int
-	times(multipiler int) Money
+	times(multiplier int) Money
 	currency() string
 }
 
