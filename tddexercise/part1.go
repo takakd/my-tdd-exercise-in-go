@@ -40,8 +40,7 @@ func NewBank() *Bank {
 
 func (b *Bank) reduce(source Expression, to string) Money {
 	sum := source.(*Sum)
-	amount := sum.augend.amount + sum.addend.amount
-	return MakeMoney(amount, to)
+	return sum.reduce(to)
 }
 
 // Sum
@@ -52,4 +51,9 @@ type Sum struct {
 
 func NewSum(augend Money, addend Money) *Sum {
 	return &Sum{augend: augend, addend: addend}
+}
+
+func (s *Sum)reduce(to string) Money {
+	amount := s.augend.amount + s.addend.amount
+	return MakeMoney(amount, to)
 }
