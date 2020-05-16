@@ -61,3 +61,12 @@ func Test_PlusReturnSum(t *testing.T) {
 	}
 }
 
+func Test_ReduceSum(t *testing.T) {
+	sum := NewSum(MakeDollar(3), MakeDollar(4))
+	bank := NewBank()
+	result := bank.reduce(sum, "USD")
+	if result != MakeDollar(7) {
+		t.Errorf("expected=%d, actual=%d", result.amount, MakeDollar(7).amount)
+	}
+}
+
