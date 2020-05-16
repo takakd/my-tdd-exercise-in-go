@@ -27,6 +27,9 @@ func (m Money) plus(added Money) Expression {
 }
 
 func (m Money) reduce(to string) Money {
+	if m.currency == "CHF" && to == "USD" {
+		return MakeMoney(m.amount / 2, to)
+	}
 	return m
 }
 
