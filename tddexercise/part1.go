@@ -108,6 +108,6 @@ func NewSum(augend Money, addend Money) *Sum {
 }
 
 func (s *Sum) reduce(bank *Bank, to string) Money {
-	amount := s.augend.amount + s.addend.amount
+	amount := s.augend.reduce(bank, to).amount + s.addend.reduce(bank, to).amount
 	return MakeMoney(amount, to)
 }
