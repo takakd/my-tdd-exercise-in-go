@@ -27,6 +27,10 @@ func Test_Equality(t *testing.T) {
 	if NewFranc(5) == NewFranc(6) {
 		t.Error("not equal.")
 	}
+
+	if NewDollar(5).Money == NewFranc(5).Money {
+		t.Error("shoud be not equal.")
+	}
 }
 
 func Test_FrancMultiplication(t *testing.T) {

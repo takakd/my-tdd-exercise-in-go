@@ -20,11 +20,11 @@ func (d Dollar) times(multiplier int) Dollar {
 
 // Franc
 type Franc struct {
-	amount int
+	Money
 }
 
 func NewFranc(amount int) Franc {
-	return Franc{amount: amount}
+	return Franc{Money{amount: amount}}
 }
 
 func (self Franc) times(multiplier int) Franc {
