@@ -140,3 +140,16 @@ func Test_SumPlusMoney(t *testing.T) {
 		t.Errorf("expected=%d, actual=%d", MakeDollar(15).amount, result.amount)
 	}
 }
+
+func Test_SumTimes(t *testing.T) {
+	fiveBucks := MakeDollar(5)
+	tenFrancs := MakeFranc(10)
+	bank := NewBank()
+	bank.addRate("CHF", "USD", 2)
+	sum := NewSum(fiveBucks, tenFrancs).times(2)
+	result := bank.reduce(sum, "USD")
+	if MakeDollar(20) != result {
+		t.Errorf("expected=%d, actual=%d", MakeDollar(20).amount, result.amount)
+	}
+
+}
