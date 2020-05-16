@@ -6,12 +6,16 @@ type Money struct {
 	currency string
 }
 
+func MakeMoney(amount int, currency string) Money {
+	return Money{amount: amount, currency: currency}
+}
+
 func MakeDollar(amount int) Money {
-	return Money{amount: amount, currency: "USD"}
+	return MakeMoney(amount, "USD")
 }
 
 func MakeFranc(amount int) Money {
-	return Money{amount: amount, currency: "CHF"}
+	return MakeMoney(amount, "CHF")
 }
 
 func (m Money) times(multiplier int) Money {
@@ -35,7 +39,9 @@ func NewBank() *Bank {
 }
 
 func (b *Bank) reduce(source Expression, to string) Money {
-	return MakeDollar(10)
+	sum := source.(*Sum)
+	amount := sum.augend.amount + sum.addend.amount
+	return MakeMoney(amount, to)
 }
 
 // Sum
