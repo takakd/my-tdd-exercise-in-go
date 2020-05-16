@@ -39,8 +39,24 @@ func NewBank() *Bank {
 }
 
 func (b *Bank) reduce(source Expression, to string) Money {
-	sum := source.(*Sum)
-	return sum.reduce(to)
+	// bad code.
+
+	// @note: pattern if
+	//m, ok := source.(Money)
+	//if ok {
+	//	return m
+	//}
+	//sum, ok := source.(*Sum)
+	//return sum.reduce(to)
+
+	// @note: pattern type switch
+	switch v := source.(type) {
+	case Money:
+		return v
+	case *Sum:
+		return v.reduce(to)
+	}
+	panic("unknown type")
 }
 
 // Sum
@@ -53,7 +69,7 @@ func NewSum(augend Money, addend Money) *Sum {
 	return &Sum{augend: augend, addend: addend}
 }
 
-func (s *Sum)reduce(to string) Money {
+func (s *Sum) reduce(to string) Money {
 	amount := s.augend.amount + s.addend.amount
 	return MakeMoney(amount, to)
 }
