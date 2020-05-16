@@ -26,8 +26,13 @@ func (m Money) plus(added Money) Expression {
 	return NewSum(m, added)
 }
 
+func (m Money) reduce(to string) Money{
+	return m
+}
+
 // Expression
 type Expression interface {
+	reduce(to string) Money
 }
 
 // Bank
@@ -52,7 +57,7 @@ func (b *Bank) reduce(source Expression, to string) Money {
 	// @note: pattern type switch
 	switch v := source.(type) {
 	case Money:
-		return v
+		return v.reduce(to)
 	case *Sum:
 		return v.reduce(to)
 	}
