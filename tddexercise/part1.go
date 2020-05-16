@@ -18,6 +18,22 @@ func (m Money) times(multiplier int) Money {
 	return Money{amount: m.amount * multiplier, currency: m.currency}
 }
 
-func (m Money) plus(added Money) Money {
+func (m Money) plus(added Money) Expression {
 	return Money{amount: m.amount + added.amount, currency: m.currency}
+}
+
+// Expression
+type Expression interface {
+}
+
+// Bank
+type Bank struct {
+}
+
+func NewBank() *Bank {
+	return &Bank{}
+}
+
+func (b *Bank) reduce(source Expression, to string) Money {
+	return Money{}
 }

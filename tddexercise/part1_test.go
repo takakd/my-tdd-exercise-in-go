@@ -40,16 +40,11 @@ func Test_Currency(t *testing.T) {
 
 func Test_SimpleAddition(t *testing.T) {
 	sum := MakeDollar(5).plus(MakeDollar(5))
-	if sum != MakeDollar(10) {
-		t.Errorf("expected=%d, actual=%d", MakeDollar(10).amount, sum.amount)
-	}
-}
 
-//
-func Test_SimpleAddition(t *testing.T) {
 	bank := NewBank()
 	reduced := bank.reduce(sum, "USD")
 	if MakeDollar(10) != reduced {
 		t.Errorf("expected=%d, actual=%d", MakeDollar(10).amount, reduced)
 	}
 }
+
