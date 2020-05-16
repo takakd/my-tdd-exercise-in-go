@@ -16,7 +16,7 @@ if [[ "$1" -eq "red" ]] || [[ "$1" -eq "green" ]]; then
 
 
     if [[ "$2" -ne "" ]]; then
-        git commit -m "${1} ${2}"
+        git commit -m "${1} \"${2}\""
     else
         git commit -m "${1}"
     fi
