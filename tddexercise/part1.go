@@ -114,5 +114,5 @@ func (s *Sum) reduce(bank *Bank, to string) Money {
 }
 
 func (s *Sum) plus(added Expression) Expression {
-	return nil
+	return NewSum(s, added)
 }
