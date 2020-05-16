@@ -14,3 +14,15 @@ func (d Dollar) times(multiplier int) Dollar {
 }
 
 
+// Franc
+type Franc struct {
+	amount int
+}
+
+func NewFranc(amount int) Franc {
+	return Franc{amount: amount}
+}
+
+func (self Franc) times(multiplier int) Franc {
+	return NewFranc(self.amount * multiplier)
+}
