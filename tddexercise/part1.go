@@ -27,10 +27,8 @@ func (m Money) plus(added Money) Expression {
 }
 
 func (m Money) reduce(bank *Bank, to string) Money {
-	if m.currency == "CHF" && to == "USD" {
-		return MakeMoney(m.amount / 2, to)
-	}
-	return m
+	rate := bank.rate(m.currency, to)
+	return MakeMoney(m.amount/rate, to)
 }
 
 // Expression
@@ -71,6 +69,13 @@ func (b *Bank) reduce(source Expression, to string) Money {
 
 func (b *Bank) addRate(from string, to string, rate int) {
 
+}
+
+func (b *Bank) rate(from string, to string) int {
+	if from == "CHF" && to == "USD" {
+		return 2
+	}
+	return 1
 }
 
 // Sum
