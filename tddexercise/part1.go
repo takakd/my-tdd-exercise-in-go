@@ -3,11 +3,14 @@ package tddexercise
 // Money
 type Money struct {
 	amount int
-	currency string
 }
 
 func (m Money)times(multipiler int) Money {
 	return Money{}
+}
+
+func (m Money)currency() string {
+	return ""
 }
 
 func MakeDollar(amount int) Money {
@@ -27,6 +30,10 @@ func (d Dollar) times(multiplier int) Money {
 	return MakeDollar(d.amount * multiplier)
 }
 
+func (d Dollar) currency() string {
+	return "USD"
+}
+
 // Franc
 type Franc struct {
 	Money
@@ -34,4 +41,8 @@ type Franc struct {
 
 func (f Franc) times(multiplier int) Money {
 	return MakeFranc(f.amount * multiplier)
+}
+
+func (f Franc) currency() string {
+	return "CHF"
 }
