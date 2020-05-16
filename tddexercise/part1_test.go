@@ -3,7 +3,6 @@ package tddexercise
 import (
 	"testing"
 	"reflect"
-	"fmt"
 )
 
 func Test_Multiplication(t *testing.T) {
@@ -13,7 +12,6 @@ func Test_Multiplication(t *testing.T) {
 		t.Errorf("expected=%d, actual=%d", five.times(2), 10)
 	}
 
-	fmt.Printf("%v, %v", MakeDollar(15), five.times(3))
 	if MakeDollar(15) != five.times(3) {
 		t.Errorf("expected=%d, actual=%d", five.times(3), 15)
 	}
@@ -151,5 +149,12 @@ func Test_SumTimes(t *testing.T) {
 	if MakeDollar(20) != result {
 		t.Errorf("expected=%d, actual=%d", MakeDollar(20).amount, result.amount)
 	}
+}
 
+func Test_PlusSameCurrencyReturnMoney(t *testing.T) {
+	sum := MakeDollar(5).plus(MakeDollar(5))
+	_, ok := sum.(Money)
+	if ! ok {
+		t.Error("type error. type should be Money.")
+	}
 }
