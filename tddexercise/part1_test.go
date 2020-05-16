@@ -28,6 +28,8 @@ func Test_Equality(t *testing.T) {
 		t.Error("not equal.")
 	}
 
+	// compile error: comparing dollar and franc is ok.
+	// if NewDollar(5)== NewFranc(5)
 	if NewDollar(5).Money == NewFranc(5).Money {
 		t.Error("shoud be not equal.")
 	}
