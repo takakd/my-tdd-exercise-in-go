@@ -114,3 +114,14 @@ func Test_IdentityRate(t *testing.T) {
 		t.Errorf("expected=%d, actual=%d", 1, bank.rate("USD", "USD"))
 	}
 }
+
+func Test_MixedAddition(t *testing.T) {
+	fiveBucks := MakeDollar(5)
+	tenFrancs := MakeFranc(10)
+	bank := NewBank()
+	bank.addRate("CHF", "USD", 2)
+	result := bank.reduce(fiveBucks.plus(tenFrancs), "USD")
+	if result != MakeDollar(10) {
+		t.Errorf("expected=%d, actual=%d", result.amount, MakeDollar(10).amount)
+	}
+}
