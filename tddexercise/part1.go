@@ -55,13 +55,15 @@ func (b *Bank) reduce(source Expression, to string) Money {
 	//return sum.reduce(to)
 
 	// @note: pattern type switch
-	switch v := source.(type) {
-	case Money:
-		return v.reduce(to)
-	case *Sum:
-		return v.reduce(to)
-	}
-	panic("unknown type")
+	//switch v := source.(type) {
+	//case Money:
+	//	return v.reduce(to)
+	//case *Sum:
+	//	return v.reduce(to)
+	//}
+	//panic("unknown type")
+
+	return source.reduce(to)
 }
 
 // Sum
