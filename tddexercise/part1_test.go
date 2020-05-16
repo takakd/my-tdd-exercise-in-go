@@ -92,3 +92,18 @@ func Test_ArrayEquals(t *testing.T) {
 		t.Error("not equal array")
 	}
 }
+
+func Test_MapEqual(t *testing.T) {
+	l := map[struct{
+		from string
+		to string
+	}]int{{"CHF", "USD"}: 2}
+	r := map[struct{
+		from string
+		to string
+	}]int{{"CHF", "USD"}: 2}
+
+	if ! reflect.DeepEqual(l, r) {
+		t.Error("not equal array")
+	}
+}
