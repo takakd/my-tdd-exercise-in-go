@@ -5,12 +5,12 @@ type Money struct {
 	amount int
 }
 
-func MakeDollar(amount int) Dollar {
-	return Dollar{Money{amount: amount}}
+func MakeDollar(amount int) Money {
+	return Dollar{Money{amount: amount}}.Money
 }
 
-func MakeFranc(amount int) Franc {
-	return Franc{Money{amount: amount}}
+func MakeFranc(amount int) Money {
+	return Franc{Money{amount: amount}}.Money
 }
 
 // Dollar
