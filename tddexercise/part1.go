@@ -19,7 +19,7 @@ func (m Money) times(multiplier int) Money {
 }
 
 func (m Money) plus(added Money) Expression {
-	return Money{amount: m.amount + added.amount, currency: m.currency}
+	return NewSum(m, added)
 }
 
 // Expression
@@ -40,6 +40,10 @@ func (b *Bank) reduce(source Expression, to string) Money {
 
 // Sum
 type Sum struct {
-	augend int
-	addend int
+	augend Money
+	addend Money
+}
+
+func NewSum(augend Money, addend Money) *Sum {
+	return &Sum{augend: augend, addend: addend}
 }

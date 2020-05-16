@@ -51,12 +51,13 @@ func Test_SimpleAddition(t *testing.T) {
 func Test_PlusReturnSum(t *testing.T) {
 	five := MakeDollar(5)
 	result := five.plus(five)
-	sum, _ := result.(Sum)
-	if five.amount != sum.augend {
-		t.Errorf("expected=%d, actual=%d", five.amount, sum.augend)
+	// @note: interface is pointer.
+	sum, _ := result.(*Sum)
+	if five != sum.augend {
+		t.Errorf("expected=%d, actual=%d", five.amount, sum.augend.amount)
 	}
-	if five.amount != sum.addend {
-		t.Errorf("expected=%d, actual=%d", five.amount, sum.addend)
+	if five != sum.addend {
+		t.Errorf("expected=%d, actual=%d", five.amount, sum.addend.amount)
 	}
 }
 
