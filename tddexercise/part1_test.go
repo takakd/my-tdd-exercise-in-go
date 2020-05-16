@@ -22,3 +22,16 @@ func Test_Equality(t *testing.T) {
 		t.Error("not equal.")
 	}
 }
+
+func Test_FrancMultiplication(t *testing.T) {
+	five := NewFranc(5)
+
+	if NewFranc(10) != five.times(2) {
+		t.Errorf("expected=%d, actual=%d", five.times(2).amount, 10)
+	}
+
+	if NewFranc(15) != five.times(3) {
+		t.Errorf("expected=%d, actual=%d", five.times(3).amount, 15)
+	}
+}
+
