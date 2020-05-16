@@ -27,6 +27,6 @@ func NewFranc(amount int) Franc {
 	return Franc{Money{amount: amount}}
 }
 
-func (self Franc) times(multiplier int) Franc {
-	return NewFranc(self.amount * multiplier)
+func (f Franc) times(multiplier int) Franc {
+	return NewFranc(f.amount * multiplier)
 }
